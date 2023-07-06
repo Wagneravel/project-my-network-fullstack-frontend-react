@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/auth/AuthContext';
 import Logo from '../../logoName.jpg';
-import { StyledHeader, StyledHeaderDiv } from './style';
+import { StyledHeader, StyledHeaderDiv, ModalButton, ModalContainer, ModalErrorMessage, ModalForm, ModalInput, ModalTitle } from './style';
 import { ApiNetwork } from '../../services/Api';
 import ReactModal from 'react-modal'
 import { useForm } from 'react-hook-form';
@@ -31,7 +31,6 @@ export function HeaderHome(){
           const response = await ApiNetwork.get(`/users/${userIdLS}`);
 
             const userData = response.data
-            console.log(userData)
             setUserDS(userData)
         } catch (error) {
           console.log(error);
@@ -52,15 +51,11 @@ export function HeaderHome(){
       };
     
     const handleFormSubmit = async (data: iUpdateData) => {
-        console.log(data)
-
-        console.log(userIdLS)
 
         const filteredData = Object.fromEntries(
             Object.entries(data).filter(([key, value]) => value !== "")
         );
     
-        console.log(filteredData);
 
         updateUser(filteredData, userIdLS)
 
@@ -74,29 +69,28 @@ export function HeaderHome(){
     
     return(
         <StyledHeaderDiv>
-            <ReactModal
-                isOpen={isModalOpen}
-                onRequestClose={() => setIsModalOpen(false)}
-                >
-                <h1>Modal editar User </h1>
-                <button onClick={fecharModal}>fechar modal</button>
-                <button onClick={handleSubmitDeleteUser}>Deletar Usuário</button>
 
-                <form onSubmit={handleSubmit(handleFormSubmit)}>
-                    <p>{userDS?.fullName}</p>
-                    <input {...register("fullName")} defaultValue ="" type="text" />
-                    <p>{userDS?.email}</p>
-                    <input {...register("email")} defaultValue="" type="email" />
-                    <p>{userDS?.phone}</p>
-                    <input {...register("phone")} defaultValue="" type="tel"  />
-                    <p>Nova senha</p>
-                    <input {...register("password")} defaultValue="" type="password"  />
-                    <p>Confirme sua senha</p>
-                    <input {...register("confirmPassword")} defaultValue="" type="password"  />
-                    
-                    <button type="submit" >Atualizar!</button>
-                </form>
+           <ReactModal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)}>
+            <ModalContainer>
+                <ModalTitle>Editar Usuário</ModalTitle>
+                <ModalButton onClick={fecharModal}>Fechar</ModalButton>
+                <ModalButton onClick={handleSubmitDeleteUser}>Deletar Usuário</ModalButton>
+                <ModalForm onSubmit={handleSubmit(handleFormSubmit)}>
+                <p>Nome:</p>
+                <ModalInput {...register("fullName")} defaultValue="" type="text" />
+                <p>Email:</p>
+                <ModalInput {...register("email")} defaultValue="" type="email" />
+                <p>Telefone:</p>
+                <ModalInput {...register("phone")} defaultValue="" type="tel" />
+                <p>Nova senha:</p>
+                <ModalInput {...register("password")} defaultValue="" type="password" />
+                <p>Confirme sua senha:</p>
+                <ModalInput {...register("confirmPassword")} defaultValue="" type="password" />
+                <ModalButton type="submit">Atualizar!</ModalButton>
+                </ModalForm>
+            </ModalContainer>
             </ReactModal>
+
             <StyledHeader>
             
                 <img alt='Logo' src={Logo} />

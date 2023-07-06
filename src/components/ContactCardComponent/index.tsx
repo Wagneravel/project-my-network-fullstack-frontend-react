@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { ContactContext } from "../../providers/contact/ContactContext"
-import { StyledDivList } from "./style"
+import { StyledDivList, ModalTitle, ModalInput, ModalForm, ModalButton, ModalContainer, ModalErrorMessage } from "./style"
 import { ApiNetwork } from "../../services/Api";
 import { IContactResponse, iDataRegister } from "../../providers/contact/Contact.schema";
 
@@ -71,28 +71,34 @@ export function ContactCard(){
     return(
         <StyledDivList >
 
+            <div>
+
+              <ModalTitle>My Contacts List</ModalTitle>
+
+              <ModalButton onClick={ () => abrirModal1()}  >Criar contato</ModalButton>
+
+            </div>
+
             <Modal
                 isOpen={modalAberto1}
-                onRequestClose={() => setModalAberto1(false)}
-                >
-                  
-                <h1>Modal criar contato</h1>
-                <button onClick={fecharModal1}>fechar modal</button>
-
-
-                <form onSubmit={handleSubmit(handleFormSubmitCreate)}>
-                    <p>nome</p>
-                    <input {...register("fullName", { required: true })} type="text" />
-                    {errors.fullName && <span>{errors.fullName.message}</span>}
-                    <p>email</p>
-                    <input {...register("email", { required: true })} type="email" />
-                    {errors.email && <span>{errors.email.message}</span>}
-                    <p>telefone</p>
-                    <input {...register("phone", { required: true })} type="tel" />
-                    {errors.phone && <span>{errors.phone.message}</span>}
-                    <button type="submit">Cadastrar!</button>
-                </form>
-
+                onRequestClose={fecharModal1}
+            >
+                <ModalContainer>
+                    <ModalTitle>Modal criar contato</ModalTitle>
+                    <ModalButton onClick={fecharModal1}>fechar modal</ModalButton>
+                    <ModalForm onSubmit={handleSubmit(handleFormSubmitCreate)}>
+                        <p>nome</p>
+                        <ModalInput {...register("fullName", { required: true })} type="text" />
+                        {errors.fullName && <ModalErrorMessage>{errors.fullName.message}</ModalErrorMessage>}
+                        <p>email</p>
+                        <ModalInput {...register("email", { required: true })} type="email" />
+                        {errors.email && <ModalErrorMessage>{errors.email.message}</ModalErrorMessage>}
+                        <p>telefone</p>
+                        <ModalInput {...register("phone", { required: true })} type="tel" />
+                        {errors.phone && <ModalErrorMessage>{errors.phone.message}</ModalErrorMessage>}
+                        <ModalButton type="submit">Cadastrar!</ModalButton>
+                    </ModalForm>
+                </ModalContainer>
             </Modal>
 
             <Cards />

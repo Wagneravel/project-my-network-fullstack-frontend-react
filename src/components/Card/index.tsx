@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { ContactContext } from "../../providers/contact/ContactContext"
-import { StyledDivList, StyledList } from "./style"
+import { ModalContainer, ModalTitle, ModalButton, StyledDivList, StyledList, ModalForm, ModalInput, ModalErrorMessage } from "./style"
 import { ApiNetwork } from "../../services/Api";
 import { IContactResponse, iUpdateData } from "../../providers/contact/Contact.schema";
 
@@ -76,35 +76,31 @@ export function Cards(){
     return(
         <StyledDivList >
 
-            <Modal
-                isOpen={modalAberto2}
-                onRequestClose={() => setModalAberto2(false)}
-                >
-
-                <h1>Modal editar contato</h1>
-                <button onClick={fecharModal2}>fechar modal</button>
-                <button onClick={() => deletarContact()}>Deletar contato</button>
-                <form onSubmit={handleSubmit(handleFormSubmitUpdate)}>
-                    <p>nome</p>
-                    <input {...register("fullName")} type="text" />
-                    {errors.fullName && <span>{errors.fullName.message}</span>}
+            <Modal isOpen={modalAberto2} onRequestClose={() => setModalAberto2(false)}>
+                <ModalContainer>
+                    <ModalTitle>Editar Contato</ModalTitle>
+                    <ModalButton onClick={fecharModal2}>Fechar</ModalButton>
+                    <ModalButton onClick={() => deletarContact()}>Deletar</ModalButton>
+                    <ModalForm onSubmit={handleSubmit(handleFormSubmitUpdate)}>
+                    <p>Nome:</p>
+                    <ModalInput {...register("fullName")} type="text" />
+                    {errors.fullName && <ModalErrorMessage>{errors.fullName.message}</ModalErrorMessage>}
                     
-                    <p>email</p>
-                    <input {...register("email")} type="email" />
-                    {errors.email && <span>{errors.email.message}</span>}
+                    <p>Email:</p>
+                    <ModalInput {...register("email")} type="email" />
+                    {errors.email && <ModalErrorMessage>{errors.email.message}</ModalErrorMessage>}
                     
-                    <p>telefone</p>
-                    <input {...register("phone")} type="tel" />
-                    {errors.phone && <span>{errors.phone.message}</span>}
-                    <button type="submit">Atualizar!</button>
-                </form>
-
+                    <p>Telefone:</p>
+                    <ModalInput {...register("phone")} type="tel" />
+                    {errors.phone && <ModalErrorMessage>{errors.phone.message}</ModalErrorMessage>}
+                    
+                    <button type="submit">Atualizar</button>
+                    </ModalForm>
+                </ModalContainer>
             </Modal>
 
             <div>
 
-              <h1>My Contacts List</h1>
-            
                 <StyledList >
                 
                { listContacts?.map((element:IContactResponse, index) => (
@@ -113,7 +109,7 @@ export function Cards(){
                             <h3>{element.fullName}</h3>
                             <h5>{element.email}</h5>
                             <h5>{element.phone}</h5>
-                            <button onClick={ () => abrirModal2(element.id)}  >Editar contato</button>
+                            <ModalButton onClick={ () => abrirModal2(element.id)}  >Editar contato</ModalButton>
                         </div>
                     </li>
                 ))

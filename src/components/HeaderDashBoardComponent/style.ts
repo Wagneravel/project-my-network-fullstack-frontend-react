@@ -35,32 +35,37 @@ export const StyledHeader = styled.div<iStyleHeaderProps>`
         }
 
         button{
+            background: #007bff;
+            color: white;
             border: none;
-            background-color: bisque;
-            padding: 8px 20px;
-            border-radius: 8px;
+            border-radius: 4px;
+            padding: 8px 8px;
+            margin-right: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
 
-            :hover{
-                
-                background-color: gray;
-                color: white;
-            }
+            &:hover {
+                background: #0056b3;
+                    }
         }
-
         a{
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 8px;
+            margin-right: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
             text-decoration: none;
-            padding: 8px 20px;
-            background-color: bisque;
-            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: black;
 
             :hover{
                 
-                background-color: gray;
-                color: white;
+                background: #0056b3;
+
             }
 
         }
@@ -79,4 +84,47 @@ export const StyledHeaderDiv = styled.div`
 
     
 `
+export const ModalContainer = styled.div`
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+`;
 
+export const ModalTitle = styled.h1`
+  font-size: 24px;
+  margin-bottom: 16px;
+`;
+
+export const ModalButton = styled.button`
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background: #0056b3;
+  }
+`;
+
+export const ModalForm = styled.form`
+  margin-top: 16px;
+`;
+
+export const ModalInput = styled.input`
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+`;
+
+export const ModalErrorMessage = styled.span`
+  color: red;
+  font-size: 14px;
+  margin-top: 8px;
+`;
