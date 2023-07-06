@@ -1,13 +1,8 @@
 import styled from "styled-components";
 
-interface iStyleListProps {
-    
 
-    
-    
-}
 
-export const StyledList = styled.ul<iStyleListProps>`
+export const StyledList = styled.ul`
 
     display: flex;
     align-items: center;
@@ -24,11 +19,10 @@ export const StyledList = styled.ul<iStyleListProps>`
 
     && > li{
         width: 250px;
-        height: 150px;
         box-sizing: border-box;
-        border: 2px solid black;
+        border: 4px double black;
         border-radius: 8px;
-        background-color: bisque;
+        background-color: #7986cb91;
 
         /* :hover{
             border: 1px solid green;
@@ -59,21 +53,12 @@ export const StyledList = styled.ul<iStyleListProps>`
             justify-content: space-between;
             gap: 4px;
 
-            /* button{
-                background-color: bisque;
-                padding: 8px 20px;
-                border-radius: 8px;
-
-                :hover{
-                    background-color: green;
-                    color: white;
-            
-                }
-            } */
-
-            h3{
+           
+            h4{
+                font-weight: 700;
                 margin: 0;
             }
+
             h5{
                 margin: 0;
             }

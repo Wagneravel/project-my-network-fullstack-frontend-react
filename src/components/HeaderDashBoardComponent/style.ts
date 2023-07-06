@@ -1,10 +1,7 @@
 import styled from "styled-components";
 
-interface iStyleHeaderProps {
-    
-}
 
-export const StyledHeader = styled.div<iStyleHeaderProps>`
+export const StyledHeader = styled.div`
 
     display: flex;
     align-items: center;

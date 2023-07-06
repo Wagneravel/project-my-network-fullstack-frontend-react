@@ -4,7 +4,6 @@ import { StyledDivList, ModalTitle, ModalInput, ModalForm, ModalButton, ModalCon
 import { ApiNetwork } from "../../services/Api";
 import { IContactResponse, iDataRegister } from "../../providers/contact/Contact.schema";
 
-
 import Modal from 'react-modal'
 import { useForm } from 'react-hook-form';
 import { toast } from "react-hot-toast";
@@ -24,7 +23,7 @@ export function ContactCard(){
     setModalAberto1(true);
   };
 
-
+ 
 
   const fecharModal1 = () => {
     setModalAberto1(false);

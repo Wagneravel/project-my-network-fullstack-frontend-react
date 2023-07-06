@@ -98,8 +98,6 @@ export function HeaderHome(){
                 <div>
                     <div className='div-user'>
                         <h5>{userDS?.fullName}</h5>
-                        <h5>{userDS?.email}</h5>
-                        <h5>{userDS?.phone}</h5>
                         
                     </div>
                     <button  onClick={modalUser} >Editar User</button>

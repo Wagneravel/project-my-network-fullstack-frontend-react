@@ -3,6 +3,9 @@ import { ContactContext } from "../../providers/contact/ContactContext"
 import { ModalContainer, ModalTitle, ModalButton, StyledDivList, StyledList, ModalForm, ModalInput, ModalErrorMessage } from "./style"
 import { ApiNetwork } from "../../services/Api";
 import { IContactResponse, iUpdateData } from "../../providers/contact/Contact.schema";
+import { RiContactsFill } from 'react-icons/ri' ; 
+import { MdMarkEmailRead } from 'react-icons/md' 
+import { BsFillTelephoneForwardFill } from 'react-icons/bs'
 
 
 import Modal from 'react-modal'
@@ -11,6 +14,7 @@ import { useForm } from 'react-hook-form';
 Modal.setAppElement('#root'); 
 
 export function Cards(){
+    
     
     const { deleteContact, updateContact } = useContext(ContactContext)
 
@@ -106,9 +110,10 @@ export function Cards(){
                { listContacts?.map((element:IContactResponse, index) => (
                     <li  key={index}>
                         <div >
-                            <h3>{element.fullName}</h3>
-                            <h5>{element.email}</h5>
-                            <h5>{element.phone}</h5>
+                            
+                            <h4> <RiContactsFill / > {element.fullName}</h4>
+                            <h5> <MdMarkEmailRead /> {element.email}</h5>
+                            <h5> <BsFillTelephoneForwardFill /> {element.phone}</h5>
                             <ModalButton onClick={ () => abrirModal2(element.id)}  >Editar contato</ModalButton>
                         </div>
                     </li>

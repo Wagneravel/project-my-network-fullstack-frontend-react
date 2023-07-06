@@ -1,13 +1,8 @@
 import styled from "styled-components";
 
-interface iStyleListProps {
-    
 
-    
-    
-}
 
-export const StyledList = styled.ul<iStyleListProps>`
+export const StyledList = styled.ul`
 
     display: flex;
     align-items: center;
